@@ -116,6 +116,7 @@ export default function useWeb3() {
   return {
     // refs
     account,
+    name,
     chainId,
     profile,
     connector,

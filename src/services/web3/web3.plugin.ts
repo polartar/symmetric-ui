@@ -33,6 +33,7 @@ export type Wallet =
   | 'gnosis'
   | 'walletlink'
   | 'portis';
+
 export const SupportedWallets = [
   'metamask',
   'walletconnect',
@@ -40,6 +41,7 @@ export const SupportedWallets = [
   'walletlink',
   'portis'
 ] as Wallet[];
+
 export const WalletNameMap: Record<Wallet, string> = {
   metamask: 'Metamask',
   walletconnect: 'WalletConnect',
@@ -47,6 +49,7 @@ export const WalletNameMap: Record<Wallet, string> = {
   walletlink: 'Coinbase',
   portis: 'Portis'
 };
+
 type ConnectorImplementation = new (...args: any[]) => Connector;
 export const Web3ProviderSymbol = Symbol('WEB3_PROVIDER');
 
@@ -104,6 +107,7 @@ export default {
         pluginState.connector?.provider ??
         rpcProviderService.getJsonProvider(chainId.value)
     );
+
     const signer = computed(() => pluginState.connector?.provider?.getSigner());
 
     // user supplied web3 provider. i.e. (web3, ethers)
