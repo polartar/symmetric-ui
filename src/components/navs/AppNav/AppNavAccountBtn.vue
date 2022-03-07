@@ -21,14 +21,8 @@
           class="pl-2 hidden lg:inline-block"
         />
         <span v-else class="pl-2 hidden lg:inline-block">
-          <span
-            v-if="name"
-            v-text="name"
-          />
-          <span
-            v-else
-            v-text="_shorten(account)"
-          />
+          <span v-if="name" v-text="name" />
+          <span v-else v-text="_shorten(account)" />
         </span>
       </BalBtn>
     </template>
@@ -56,7 +50,7 @@ export default defineComponent({
     const { bp, upToLargeBreakpoint } = useBreakpoints();
     const { isLoadingProfile, profile, account } = useWeb3();
     const name = ref('');
-    getName(account.value).then((data) => (name.value = data));
+    getName(account.value).then(data => (name.value = data));
 
     const avatarSize = computed(() => {
       if (bp.value === 'sm') {

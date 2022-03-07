@@ -22,7 +22,7 @@
           </div>
           <div class="ml-2">
             <div class="address flex items-baseline">
-              <div v-if="name" v-text="name"/>
+              <div v-if="name" v-text="name" />
               <div v-else v-text="_shorten(account)" />
               <div class="ml-3 flex">
                 <BalTooltip width="auto">
@@ -298,9 +298,9 @@ export default defineComponent({
       }, 2 * 1000);
     }
 
-    // get nomdomain
+    // get name with nomspace
     const name = ref('');
-    getName(account.value).then((data) => (name.value = data));
+    getName(account.value).then(data => (name.value = data));
 
     return {
       // data
