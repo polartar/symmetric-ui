@@ -11,6 +11,7 @@
         :circle="upToLargeBreakpoint"
       >
         <Avatar
+          v-if="profile && profile.avatar"
           :iconURI="profile?.avatar"
           :address="account"
           :size="avatarSize"
