@@ -26,6 +26,10 @@ jobs:
         - run:
             name: Setting Env Variable
             command: |
+              echo "AWS_BUCKET_LOCATION_V2"
+              echo $AWS_BUCKET_LOCATION_V2
+              echo $CIRCLE_BRANCH
+              echo $CIRCLE_BUILD_NUM-$APP_NETWORK_CELO
               touch .env
               echo "VUE_APP_ENV=production
               VUE_APP_DOMAIN=$APP_DOMAIN
@@ -59,8 +63,7 @@ jobs:
         - run:    
             name: Iniitate Code-Deploy
             command: |
-              if [[ $CIRCLE_BRANCH == "develop" ]]; then 
-                echo "pushing to UAT..." 
+                echo "pushing to DEV..." 
                 ID=$(aws deploy create-deployment \
                     --application-name $APP_NAME_V2 \
                     --deployment-config-name CodeDeployDefault.AllAtOnce \
@@ -86,9 +89,6 @@ jobs:
                       fi
                       aws deploy get-deployment --deployment-id $ID
                       exit $EXITCODE
-              fi
-                    aws deploy get-deployment --deployment-id $ID
-                    exit $EXITCODE
               
 
 workflows:
