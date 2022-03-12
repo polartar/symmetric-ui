@@ -29,7 +29,7 @@ jobs:
               echo "AWS_BUCKET_LOCATION_V2"
               echo $AWS_BUCKET_LOCATION_V2
               echo $CIRCLE_BRANCH
-              echo $CIRCLE_BUILD_NUM-$APP_NETWORK_CELO
+              echo $CIRCLE_BUILD_NUM-$APP_NETWORK_CELO_ID
               touch .env
               echo "VUE_APP_ENV=production
               VUE_APP_DOMAIN=$APP_DOMAIN
@@ -39,7 +39,7 @@ jobs:
               VUE_APP_PORTIS_DAPP_ID=3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe
               VUE_APP_FATHOM_SITE_ID=xxx
               VUE_APP_GA_ID=$VUE_APP_GA_ID
-              VUE_APP_DOMAIN=$APP_NETWORK_CELO
+              VUE_APP_DOMAIN=$APP_NETWORK_CELO_ID
               SUBGRAPH_URL=$SUBGRAPH_URL_SYMM_V2
               VUE_APP_BUILD_NUMBER=$CIRCLE_BUILD_NUM" > .env
         - run:
@@ -51,44 +51,44 @@ jobs:
               files:
                 - source: .
                   destination: $APPSPEC_DESTINATION" > appspec.yml      
-        - run:
-            name: Run Build
-            command: npm run build
-        - run:
-            name: Compress Artifacts
-            command: zip -qr $CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO.zip ./dist appspec.yml
-        - aws-s3/copy:
-            from: $CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO.zip 
-            to: $AWS_BUCKET_LOCATION_V2 
-        - run:    
-            name: Iniitate Code-Deploy
-            command: |
-                echo "pushing to DEV..." 
-                ID=$(aws deploy create-deployment \
-                    --application-name $APP_NAME_V2 \
-                    --deployment-config-name CodeDeployDefault.AllAtOnce \
-                    --deployment-group-name $CODE_DEPLOYMENT_GROUP_DEV \
-                    --s3-location bucket=symmetric-pools-ui-bucket,bundleType=zip,key=V2/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO.zip \
-                    --description "$GIT_COMMIT_MSG" \
-                    --output text \
-                    --query 'deploymentId')
-                echo $ID      
-                STATUS=$(aws deploy get-deployment --deployment-id $ID --output text --query 'deploymentInfo.status')
-                echo "STATUS: $STATUS..."
-                while [[ $STATUS == "Created" || $STATUS == "InProgress" || $STATUS == "Pending" || $STATUS == "Queued" || $STATUS == "Ready" ]]; do
-                        echo "Status: $STATUS..."
-                        STATUS=$(aws deploy get-deployment --deployment-id $ID --output text --query 'deploymentInfo.status')
-                        sleep 5
-                      done
-                      if [[ $STATUS == "Succeeded" ]]; then
-                        EXITCODE=0
-                        echo "Deployment finished."
-                      else
-                        EXITCODE=1
-                        echo "Deployment failed!"
-                      fi
-                      aws deploy get-deployment --deployment-id $ID
-                      exit $EXITCODE
+        # - run:
+        #     name: Run Build
+        #     command: npm run build
+        # - run:
+        #     name: Compress Artifacts
+        #     command: zip -qr $CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO_ID.zip ./dist appspec.yml
+        # - aws-s3/copy:
+        #     from: $CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO_ID.zip 
+        #     to: $AWS_BUCKET_LOCATION_V2 
+        # - run:    
+        #     name: Iniitate Code-Deploy
+        #     command: |
+        #         echo "pushing to DEV..." 
+        #         ID=$(aws deploy create-deployment \
+        #             --application-name $APP_NAME_V2 \
+        #             --deployment-config-name CodeDeployDefault.AllAtOnce \
+        #             --deployment-group-name $CODE_DEPLOYMENT_GROUP_DEV \
+        #             --s3-location bucket=symmetric-pools-ui-bucket,bundleType=zip,key=V2/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO_ID.zip \
+        #             --description "$GIT_COMMIT_MSG" \
+        #             --output text \
+        #             --query 'deploymentId')
+        #         echo $ID      
+        #         STATUS=$(aws deploy get-deployment --deployment-id $ID --output text --query 'deploymentInfo.status')
+        #         echo "STATUS: $STATUS..."
+        #         while [[ $STATUS == "Created" || $STATUS == "InProgress" || $STATUS == "Pending" || $STATUS == "Queued" || $STATUS == "Ready" ]]; do
+        #                 echo "Status: $STATUS..."
+        #                 STATUS=$(aws deploy get-deployment --deployment-id $ID --output text --query 'deploymentInfo.status')
+        #                 sleep 5
+        #               done
+        #               if [[ $STATUS == "Succeeded" ]]; then
+        #                 EXITCODE=0
+        #                 echo "Deployment finished."
+        #               else
+        #                 EXITCODE=1
+        #                 echo "Deployment failed!"
+        #               fi
+        #               aws deploy get-deployment --deployment-id $ID
+        #               exit $EXITCODE
               
 
 workflows:
