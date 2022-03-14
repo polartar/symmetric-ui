@@ -10,7 +10,7 @@ export const EXTERNAL_LINKS = {
     Home: 'https://gauntlet.network'
   },
   Ethereum: {
-    Wallets: 'https://ethereum.org/en/wallets'
+    Wallets: 'https://docs.celo.org/getting-started/wallets'
   },
   Element: {
     Earn: 'https://app.element.fi/earn',
