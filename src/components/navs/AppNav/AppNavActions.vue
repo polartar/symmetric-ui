@@ -2,7 +2,7 @@
   <div>
     <div v-if="account" class="flex items-center">
       <!-- <AppNavActivityBtn /> -->
-      <AppNavClaimBtn v-if="liquidityMiningSupported" />
+      <!-- <AppNavClaimBtn v-if="liquidityMiningSupported" /> -->
       <AppNavAccountBtn />
     </div>
     <BalBtn
@@ -28,7 +28,7 @@ import useBreakpoints from '@/composables/useBreakpoints';
 import useNumbers from '@/composables/useNumbers';
 
 import AppNavAccountBtn from './AppNavAccountBtn.vue';
-import AppNavClaimBtn from './AppNavClaimBtn.vue';
+// import AppNavClaimBtn from './AppNavClaimBtn.vue';
 import useWeb3 from '@/services/web3/useWeb3';
 // import AppNavActivityBtn from './AppNavActivityBtn/AppNavActivityBtn.vue';
 
@@ -36,8 +36,8 @@ export default defineComponent({
   name: 'AppNavActions',
 
   components: {
-    AppNavAccountBtn,
-    AppNavClaimBtn
+    AppNavAccountBtn
+    // AppNavClaimBtn
     // AppNavActivityBtn
   },
 

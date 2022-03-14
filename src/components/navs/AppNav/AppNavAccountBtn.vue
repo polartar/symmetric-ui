@@ -10,12 +10,11 @@
         :size="upToLargeBreakpoint ? 'md' : 'sm'"
         :circle="upToLargeBreakpoint"
       >
-        <Avatar
-          v-if="profile && profile.avatar"
+        <!-- <Avatar
           :iconURI="profile?.avatar"
           :address="account"
           :size="avatarSize"
-        />
+        /> -->
         <span
           v-if="profile && profile.ens"
           v-text="profile && profile.ens"
@@ -36,15 +35,15 @@
 import { computed, defineComponent } from 'vue';
 import useBreakpoints from '@/composables/useBreakpoints';
 import AppNavSettings from './AppNavSettings.vue';
-import Avatar from '@/components/images/Avatar.vue';
+// import Avatar from '@/components/images/Avatar.vue';
 import useWeb3 from '@/services/web3/useWeb3';
 
 export default defineComponent({
   name: 'AppNavAccountBtn',
 
   components: {
-    AppNavSettings,
-    Avatar
+    AppNavSettings
+    // Avatar
   },
 
   setup() {

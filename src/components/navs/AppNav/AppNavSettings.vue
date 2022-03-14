@@ -12,7 +12,7 @@
       <div class="flex mt-1">
         <div class="flex">
           <div class="relative">
-            <Avatar :iconURI="profile?.avatar" :address="account" size="44" />
+            <!-- <Avatar :iconURI="profile?.avatar" :address="account" :size="avatarSize" /> -->
             <div class="connector-icon-wrapper">
               <img
                 :src="connectorLogo"
@@ -180,7 +180,7 @@ import {
 } from '@/services/web3/web3.plugin';
 import { GP_SUPPORTED_NETWORKS } from '@/services/gnosis/constants';
 import AppSlippageForm from '@/components/forms/AppSlippageForm.vue';
-import Avatar from '@/components/images/Avatar.vue';
+// import Avatar from '@/components/images/Avatar.vue';
 import useWeb3 from '@/services/web3/useWeb3';
 
 import {
@@ -210,8 +210,8 @@ const locales = {
 
 export default defineComponent({
   components: {
-    AppSlippageForm,
-    Avatar
+    AppSlippageForm
+    // Avatar
   },
 
   setup() {
@@ -236,7 +236,8 @@ export default defineComponent({
       locales,
       tradeLiquidityOptions,
       tradeInterfaceOptions,
-      copiedAddress: false
+      copiedAddress: false,
+      avatarSize: 44
     });
 
     // COMPUTED
