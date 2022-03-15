@@ -9,7 +9,7 @@ import celo from './celo.json';
 import { Network } from '@/composables/useNetwork';
 
 export interface Config {
-  key: string;
+  key: string | '42220' ;
   chainId: Network | 12345 | 17;
   chainName: string;
   name: string;
