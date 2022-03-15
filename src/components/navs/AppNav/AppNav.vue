@@ -10,15 +10,16 @@
           <AppIcon v-if="['xs', 'sm', 'md'].includes(bp)" />
           <AppLogo v-else />
         </router-link>
-        <div class="ml-4">
-          <AppNavToggle />
-        </div>
       </div>
 
       <div
         v-if="!upToLargeBreakpoint"
         class="flex-1 md:w-1/3 flex justify-center"
-      ></div>
+      >
+        <div class="ml-4">
+          <AppNavToggle />
+        </div>
+      </div>
 
       <div class="w-1/3 flex justify-end">
         <AppNavNetworkSelect v-if="!hideNetworkSelect" />
