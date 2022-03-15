@@ -33,10 +33,6 @@ export async function sendTransaction(
   overrides: Record<string, any> = {},
   forceEthereumLegacyTxType = false
 ): Promise<TransactionResponse> {
-  console.log('Sending transaction');
-  console.log('Contract', contractAddress);
-  console.log('Action', `"${action}"`);
-  console.log('Params', params);
   const signer = web3.getSigner();
   const contract = new Contract(contractAddress, abi, web3);
   const contractWithSigner = contract.connect(signer);
@@ -45,13 +41,13 @@ export async function sendTransaction(
   try {
     // TODO:
     // Gas estimation
-    // const gasLimitNumber = await contractWithSigner.estimateGas[action](
-    //   ...params,
-    //   paramsOverrides
-    // );
+    const gasLimitNumber = await contractWithSigner.estimateGas[action](
+      ...params,
+      paramsOverrides
+    );
 
     // TODO:
-    const gasLimit = 520000; // gasLimitNumber.toNumber();
+    const gasLimit = gasLimitNumber.toNumber();
     paramsOverrides.gasLimit = Math.floor(gasLimit * (1 + GAS_LIMIT_BUFFER));
 
     if (
