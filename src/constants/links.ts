@@ -1,6 +1,6 @@
 export const EXTERNAL_LINKS = {
   Balancer: {
-    Home: 'https://balancer.fi',
+    Home: 'https://symmetric.finance',
     BalForGas:
       'https://docs.balancer.finance/core-concepts/bal-balancer-governance-token/bal-for-gas',
     PoolsV1Dashboard: 'https://celo-pools.symmetric.exchange/#/',
