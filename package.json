@@ -26,6 +26,7 @@
     "@balancer-labs/sor": "^1.1.0",
     "@balancer-labs/typechain": "^1.0.0",
     "@ensdomains/content-hash": "^2.5.3",
+    "@ensdomains/ensjs": "^2.1.0",
     "@ethersproject/abi": "~5.4.1",
     "@ethersproject/abstract-provider": "~5.4.1",
     "@ethersproject/abstract-signer": "~5.4.1",
