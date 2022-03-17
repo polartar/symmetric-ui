@@ -22,7 +22,8 @@
           </div>
           <div class="ml-2">
             <div class="address flex items-baseline">
-              <div v-text="_shorten(account)" />
+              <div v-if="name" v-text="name" />
+              <div v-else v-text="_shorten(account)" />
               <div class="ml-3 flex">
                 <BalTooltip width="auto">
                   <template v-slot:activator>
@@ -172,7 +173,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed, toRefs } from 'vue';
+import { defineComponent, reactive, computed, toRefs, ref } from 'vue';
 import { useStore } from 'vuex';
 import {
   getConnectorName,
@@ -192,6 +193,7 @@ import { TradeInterface } from '@/store/modules/app';
 import useEthereumTxType from '@/composables/useEthereumTxType';
 import { ENABLE_LEGACY_TRADE_INTERFACE } from '@/composables/trade/constants';
 import { Network } from '@/composables/useNetwork';
+import { getName } from '@/lib/utils/nomspace';
 
 const locales = {
   'en-US': 'English',
@@ -297,6 +299,10 @@ export default defineComponent({
       }, 2 * 1000);
     }
 
+    // get name with nomspace
+    const name = ref('');
+    getName(account.value).then(data => (name.value = data));
+
     return {
       // data
       ...toRefs(data),
@@ -304,6 +310,7 @@ export default defineComponent({
       ENABLE_LEGACY_TRADE_INTERFACE,
       // computed
       account,
+      name,
       profile,
       appTradeLiquidity,
       appTradeInterface,
