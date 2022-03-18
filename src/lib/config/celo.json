@@ -24,7 +24,7 @@
         "symbol": "CELO",
         "decimals": 18,
         "deeplinkId": "celo",
-        "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+        "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/celo/assets/0x471EcE3750Da237f93B8E339c536989b8978a438/logo.png",
         "minTransactionBuffer": "0.05"
       },
     "addresses": {
