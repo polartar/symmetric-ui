@@ -30,7 +30,7 @@ jobs:
               echo $AWS_BUCKET_LOCATION_V2
               echo $CIRCLE_BRANCH
               echo $CIRCLE_BUILD_NUM-$APP_NETWORK_CELO_ID
-              touch .env
+              touch .env.production
               echo "VUE_APP_ENV=production
               VUE_APP_DOMAIN=$APP_DOMAIN
               VUE_APP_IPFS_NODE=cloudflare-ipfs.com
@@ -41,7 +41,7 @@ jobs:
               VUE_APP_GA_ID=$VUE_APP_GA_ID
               VUE_APP_DOMAIN=$APP_NETWORK_CELO_ID
               SUBGRAPH_URL=$SUBGRAPH_URL_SYMM_V2
-              VUE_APP_BUILD_NUMBER=$CIRCLE_BUILD_NUM" > .env
+              VUE_APP_BUILD_NUMBER=$CIRCLE_BUILD_NUM" > .env.production
         - run:
             name: Setting appspec
             command: |
