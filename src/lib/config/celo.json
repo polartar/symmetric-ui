@@ -12,8 +12,8 @@
     "explorer": "https://explorer.celo.org",
     "explorerName": "CeloScan",
     "subgraph": "https://api.thegraph.com/subgraphs/name/centfinance/symmetric-v2-celo",
-    "poolsUrlV1": "https://storageapi.fleek.co/balancer-bucket/balancer-exchange-kovan/pools",
-    "poolsUrlV2": "https://storageapi.fleek.co/johngrantuk-team-bucket/poolsRc02.json",
+    "poolsUrlV1": "",
+    "poolsUrlV2": "",
     "subgraphs": {
       "aave": ""
     },
@@ -31,7 +31,7 @@
       "bFactory": "0x6C2e59C3cCB1d81c0eC9Fb9d4d6a3CC3488Fd71c",
       "bActions": "0xBe04ae09b9e41b8828b8866280bF882b42576b4e",
       "dsProxyRegistry": "0xbC46037Ac210f9Ca1c2803a74e455d251D966BD7",
-      "exchangeProxy": "0x7EbE42906a5F1DD96E47E7152102A6aA0A0d2459",
+      "exchangeProxy": "",
       "merkleRedeem": "0x30c30Da856AaF23eDCB4E27f9Ba5E95c5Fb8C254",
       "merkleOrchard": "0xE62ee4bE8ECc0e4aeDEAA095CE4e49B9adB050Dc",
       "multicall": "0xE72f42c64EA3dc05D2D94F541C3a806fa161c49B",
