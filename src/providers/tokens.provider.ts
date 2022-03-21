@@ -34,7 +34,7 @@ import useUserSettings from '@/composables/useUserSettings';
 import { TokenPrices } from '@/services/coingecko/api/price.service';
 import { BalanceMap } from '@/services/token/concerns/balances.concern';
 import { ContractAllowancesMap } from '@/services/token/concerns/allowances.concern';
-// import { tokenService } from '@/services/token/token.service';
+import { tokenService } from '@/services/token/token.service';
 import { configService } from '@/services/config/config.service';
 
 /**
@@ -283,12 +283,12 @@ export default {
       );
       if (injectable.length === 0) return;
 
-      // const newTokens = await tokenService.metadata.get(
-      //   injectable,
-      //   allTokenLists.value
-      // );
+      const newTokens = await tokenService.metadata.get(
+        injectable,
+        allTokenLists.value
+      );
 
-      state.injectedTokens = { ...state.injectedTokens /*, ...newTokens*/ };
+      state.injectedTokens = { ...state.injectedTokens , ...newTokens };
     }
 
     /**
